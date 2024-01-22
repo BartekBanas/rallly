@@ -30,8 +30,8 @@ const schema = z.union([requiredEmailSchema, optionalEmailSchema]);
 type NewParticipantFormData = z.infer<typeof schema>;
 
 interface NewParticipantModalProps {
-  votes: { optionId: string; type: VoteType }[];
-  onSubmit?: (data: { id: string }) => void;
+  votes: { optionId: string; type: VoteType; start: Date | null; duration: number; }[];
+  onSubmit?: (data: { id: string; }) => void;
   onCancel?: () => void;
 }
 
@@ -40,7 +40,7 @@ const VoteSummary = ({
   className,
 }: {
   className?: string;
-  votes: { optionId: string; type: VoteType }[];
+  votes: { optionId: string; type: VoteType; start: Date | null; duration: number; }[];
 }) => {
   const { t } = useTranslation();
   const voteByType = votes.reduce<Record<VoteType, string[]>>(

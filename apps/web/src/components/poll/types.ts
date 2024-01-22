@@ -5,11 +5,18 @@ export interface ParticipantForm {
     | {
         optionId: string;
         type?: VoteType;
+        start: Date | null;
+        duration: number;
       }
     | undefined
   >;
 }
 
 export interface ParticipantFormSubmitted {
-  votes: Array<{ optionId: string; type: VoteType }>;
+  votes: Array<{
+    optionId: string;
+    type: VoteType;
+    start: Date | null;
+    duration: number;
+  }>;
 }

@@ -10,7 +10,7 @@ import { useRequiredContext } from "./use-required-context";
 
 const ParticipantsContext = React.createContext<{
   participants: Array<Participant & { votes: Vote[] }>;
-  getParticipants: (optionId: string, voteType: VoteType) => Participant[];
+  getParticipants: (optionId: string, voteType: VoteType, start: Date | null, duration: number) => Participant[];
 } | null>(null);
 
 export const useParticipants = () => {
@@ -34,13 +34,15 @@ export const ParticipantsProvider: React.FunctionComponent<{
   const getParticipants = (
     optionId: string,
     voteType: VoteType,
+    start: Date | null,
+    duration: number
   ): Participant[] => {
     if (!participants) {
       return [];
     }
     return participants.filter((participant) => {
       return participant.votes.some((vote) => {
-        return vote.optionId === optionId && vote.type === voteType;
+        return vote.optionId === optionId && vote.type === voteType && vote.start == start && vote.duration == duration;
       });
     });
   };

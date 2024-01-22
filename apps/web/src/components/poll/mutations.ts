@@ -11,6 +11,8 @@ export const normalizeVotes = (
   return optionIds.map((optionId, i) => ({
     optionId,
     type: votes[i]?.type ?? ("no" as const),
+    start: votes[i]?.start ?? null,
+    duration: votes[i]?.duration ?? 0
   }));
 };
 

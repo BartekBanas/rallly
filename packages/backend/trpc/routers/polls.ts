@@ -576,6 +576,8 @@ export const polls = router({
                 select: {
                   optionId: true,
                   type: true,
+                  start: true,
+                  duration: true,
                 },
               },
             },

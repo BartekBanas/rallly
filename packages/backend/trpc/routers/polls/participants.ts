@@ -23,6 +23,8 @@ export const participants = router({
             select: {
               optionId: true,
               type: true,
+              start: true,
+              duration: true,
             },
           },
         },
@@ -58,6 +60,8 @@ export const participants = router({
           .object({
             optionId: z.string(),
             type: z.enum(["yes", "no", "ifNeedBe"]),
+            start: z.date().nullable(),
+            duration: z.number(),
           })
           .array(),
       }),
@@ -85,9 +89,11 @@ export const participants = router({
           userId: user.id,
           votes: {
             createMany: {
-              data: votes.map(({ optionId, type }) => ({
+              data: votes.map(({ optionId, type, start, duration }) => ({
                 optionId,
                 type,
+                start,
+                duration,
                 pollId: pollId,
               })),
             },
@@ -184,6 +190,8 @@ export const participants = router({
           .object({
             optionId: z.string(),
             type: z.enum(["yes", "no", "ifNeedBe"]),
+            start: z.date().nullable(),
+            duration: z.number(),
           })
           .array(),
       }),
@@ -199,9 +207,11 @@ export const participants = router({
               pollId: pollId,
             },
             createMany: {
-              data: votes.map(({ optionId, type }) => ({
+              data: votes.map(({ optionId, type, start, duration }) => ({
                 optionId,
                 type,
+                start,
+                duration,
                 pollId,
               })),
             },

@@ -19,4 +19,6 @@ export type GetPollApiResponse = {
 export type Vote = {
   optionId: string;
   type: VoteType;
+  start: Date | null;
+  duration: number;
 };

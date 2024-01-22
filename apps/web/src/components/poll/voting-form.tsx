@@ -27,6 +27,8 @@ const formSchema = z.object({
     z.object({
       optionId: z.string(),
       type: z.enum(["yes", "no", "ifNeedBe"]).optional(),
+      start: z.date().nullable().default(null),
+      duration: z.number().default(0),
     }),
   ),
 });
